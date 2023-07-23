@@ -1,59 +1,18 @@
+<header>
+  <h3>Hello World</h3>
+  <p>This is a Navi. Tab prototype project.</p>
+</header>
 
+<!-- html that is universal for every route -->
+<nav mat-tab-nav-bar [backgroundColor]="'primary'" [tabPanel]="tabPanel">
+  <a mat-tab-link *ngFor="let link of navLinks" [routerLink]="link.link" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">
+    {{link.label}}
+  </a>
+</nav>
+<mat-tab-nav-panel #tabPanel>
+  <router-outlet></router-outlet>
+</mat-tab-nav-panel>
 
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav mode="side" opened class="sidenav">
-    <h1>List of Parent Route and Children Route</h1>
-    <div>
-      <ul>
-        <li>
-          <a routerLink="/home" (click)="addTab('/home')">Home</a>
-        </li>
-        <ul>
-          <li>
-            <a  [routerLink]="['/home', 'home-detail']" (click)="addTab('/home-detail')">home-detail</a>
-          </li>
-          <li>
-            <a  [routerLink]="['/home', 'home-detail2']" (click)="addTab('/home-detail2')">home-detail2</a>
-          </li>
-        </ul>
-        <li>
-          <a routerLink="/about" (click)="addTab('/about')">About</a>
-        </li>
-        <ul>
-          <li>
-            <a  [routerLink]="['/about', 'about-detail']" (click)="addTab('/about-detail')">about-detail</a>
-          </li>
-          <li>
-            <a  [routerLink]="['/about', 'about-detail2']"  (click)="addTab('/about-detail2')">about-detail2</a>
-          </li>
-        </ul>
-        <li>
-          <a routerLink="/price" (click)="addTab('/price')">Price</a>
-        </li>
-        <ul>
-          <li>
-            <a  [routerLink]="['/price', 'price-detail']" (click)="addTab('/price-detail')">price-detail</a>
-          </li>
-          <li>
-            <a  [routerLink]="['/price', 'price-detail2']" (click)="addTab('/price-detail2')">price-detail2</a>
-          </li>
-        </ul>
-      </ul>
-    </div>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <nav mat-tab-nav-bar mat-stretch-tabs="false" mat-align-tabs="start" [backgroundColor]="'primary'" [tabPanel]="tabPanel">
-      <a mat-tab-link *ngFor="let link of links"
-      [routerLink]="link"
-         (click)="activeLink = link"
-         [active]="activeLink == link"> {{link}} </a>
-    </nav>
-    <mat-tab-nav-panel #tabPanel>
-      <router-outlet></router-outlet>
-    </mat-tab-nav-panel>
-  </mat-sidenav-content>
-</mat-sidenav-container>
-
-
-
-
+<button mat-raised-button color="primary" class="example-action-button" (click)="addLink()">
+  Add link
+</button>

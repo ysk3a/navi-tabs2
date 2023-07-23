@@ -1,0 +1,8 @@
+<p>Users works!</p>
+<ul>
+  <li *ngFor="let user of users$ | async">
+    <a [routerLink]="['/my-users', user.id]">{{user.id}}::{{user.name}}</a>
+  </li>
+</ul>
+
+<router-outlet></router-outlet>

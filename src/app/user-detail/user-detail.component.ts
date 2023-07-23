@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
-import { MockService } from '../mock.service';
+import { MockApiService } from '../mock-api.service';
 
 @Component({
-  selector: 'app-detail',
-  templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.scss']
+  selector: 'app-user-detail',
+  templateUrl: './user-detail.component.html',
+  styleUrls: ['./user-detail.component.scss']
 })
-export class DetailComponent  implements OnInit{
+export class UserDetailComponent implements OnInit {
   // listen to the change in the url param to call proper backend
   // oninit run onces when the first route is navigated to. any child routes navigated won't call ngoninit
   post$: Observable<any> = new Observable();
-  constructor(private mock: MockService, private activatedRoute: ActivatedRoute) {}
+  constructor(private mock: MockApiService, private activatedRoute: ActivatedRoute) { }
   ngOnInit(): void {
     console.log('::oninit UserDetail')
     this.post$ = this.activatedRoute.paramMap.pipe(

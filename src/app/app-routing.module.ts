@@ -1,46 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
-import { PriceComponent } from './price/price.component';
-import { EmptyTabComponent } from './empty-tab/empty-tab.component';
+import { UsersComponent } from './users/users.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
 import { BadRouteComponent } from './bad-route/bad-route.component';
-import { DetailComponent } from './detail/detail.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'Welcome',  pathMatch: 'full' },
-  { path: 'Welcome', component: EmptyTabComponent },
   {
-    path: 'home',
-    component: HomeComponent,
-    children: [
-      // dynamic url param using `:`
-      {
-        path: ':dynamic_id', component: DetailComponent
-      }
-    ]
-
+    path: '', redirectTo: '/my-home', pathMatch: 'full'
   },
   {
-    path: 'about',
-    component: AboutComponent,
-    children: [
-      // dynamic url param using `:`
-      {
-        path: ':dynamic_id', component: DetailComponent
-      }
-    ]
+    path: 'my-home', component: HomeComponent
   },
   {
-    path: 'price',
-    component: PriceComponent,
+    path: 'my-users', component: UsersComponent,
     children: [
       // dynamic url param using `:`
       {
-        path: ':dynamic_id', component: DetailComponent
+        path: ':dynamic_id', component: UserDetailComponent
       }
     ]
-
   },
   { path: '**', component: BadRouteComponent }
 ];
